@@ -1,0 +1,111 @@
+.app-header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background:
+    linear-gradient(135deg, rgba(255, 244, 214, 0.82), rgba(255, 255, 255, 0.96) 54%),
+    #ffffff;
+  border: 1px solid rgba(160, 65, 0, 0.16);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(90, 65, 54, 0.08);
+  padding: 10px 12px;
+}
+
+.app-header--sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0 0 18px 18px;
+}
+
+.app-header-location {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-header-location-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  place-items: center;
+  border-radius: 14px;
+  background: #a04100;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(160, 65, 0, 0.24);
+}
+
+.app-header-location-icon .app-header-icon {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+  stroke-width: 0;
+}
+
+.app-header-location-text {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.app-header-location-text small {
+  color: #8e7164;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+
+.app-header-location-text strong {
+  overflow: hidden;
+  color: #1a1c1d;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-header-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-header-button {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(160, 65, 0, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+  color: #a04100;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.app-header-button:hover {
+  border-color: rgba(160, 65, 0, 0.28);
+  background: #ffffff;
+}
+
+.app-header-button:active {
+  transform: scale(0.96);
+}
+
+.app-header-button .app-header-icon {
+  width: 20px;
+  height: 20px;
+}
