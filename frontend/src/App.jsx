@@ -14,6 +14,16 @@ function App() {
   const currentPath = window.location.pathname.toLowerCase();
   const isPublicPath = currentPath === "/login" || currentPath === "/register";
 
+  // Handle root path
+  if (currentPath === "/" || currentPath === "") {
+    if (isAuthenticated()) {
+      window.location.replace("/dashboard");
+    } else {
+      window.location.replace("/login");
+    }
+    return null;
+  }
+
   if (!isPublicPath && !isAuthenticated()) {
     window.location.replace("/login");
     return null;
@@ -28,9 +38,13 @@ function App() {
     return <LoginPage />;
   }
 
-  if (currentPath === "/register" && isAuthenticated()) {
-    window.location.replace("/dashboard");
-    return null;
+  if (currentPath === "/register") {
+    if (isAuthenticated()) {
+      window.location.replace("/dashboard");
+      return null;
+    }
+
+    return <RegisterPage />;
   }
 
   if (currentPath === "/dashboard") {
