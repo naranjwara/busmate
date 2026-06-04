@@ -2,11 +2,21 @@
   "name": "busmate-monorepo",
   "private": true,
   "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
+    "dev": "npm --prefix frontend run dev",
     "dev:frontend": "npm --prefix frontend run dev",
     "dev:backend": "npm --prefix backend run dev",
+    "build": "npm --prefix frontend run build",
     "build:frontend": "npm --prefix frontend run build",
+    "build:backend": "npm --prefix backend run build",
+    "start:frontend": "npm --prefix frontend start",
     "start:backend": "npm --prefix backend start",
+    "lint": "npm --prefix frontend run lint",
     "lint:frontend": "npm --prefix frontend run lint"
   }
 }

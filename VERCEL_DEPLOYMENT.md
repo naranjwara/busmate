@@ -2,94 +2,71 @@
 
 ## Prerequisites
 
-- Vercel account (https://vercel.com)
-- GitHub account with this repository
+- Vercel account: https://vercel.com
+- Vercel CLI installed locally
 - Node.js 18+ locally
 
-## Deployment Steps
+## Deploy With Vercel CLI
 
-### Step 1: Connect to Vercel
+Run these commands from the repository root:
 
-1. Go to https://vercel.com/dashboard
-2. Click "Add New" → "Project"
-3. Import your Git repository
-4. Select the root directory as the project root
+```bash
+npm install
+npm run build
+vercel
+```
 
-### Step 2: Configure Environment Variables
+For production:
 
-In your Vercel Project Settings → Environment Variables, add:
+```bash
+vercel --prod
+```
 
-**For Backend:**
+The root `vercel.json` installs the npm workspaces with optional native dependencies, builds the Vite frontend, serves `frontend/dist`, and rewrites `/api/*` requests to the Express app through `api/index.js`.
+
+## Environment Variables
+
+In Vercel Project Settings > Environment Variables, add:
+
+Backend:
 
 - `NODE_ENV`: `production`
-- `CLIENT_ORIGINS`: Your frontend URL (e.g., `https://your-app.vercel.app`)
+- `CLIENT_ORIGINS`: your frontend URL, for example `https://your-app.vercel.app`
 
-**For Frontend:**
+Frontend:
 
-- `VITE_API_URL`: `/api` (this makes frontend calls go to your backend via the same domain)
+- `VITE_API_URL`: `/api`
 
-### Step 3: Build Settings
+## Dashboard Build Settings
 
-- **Framework Preset**: Leave as "Other"
-- **Build Command**: Leave empty or use `npm run build` (Vercel will handle monorepo)
-- **Output Directory**: Leave empty (Vercel will detect from vercel.json)
+If deploying from the Vercel dashboard instead of the CLI:
 
-### Step 4: Deploy
-
-Click "Deploy" and Vercel will automatically:
-
-1. Install dependencies for both backend and frontend
-2. Build the frontend (generates `dist` folder)
-3. Set up the Node.js backend
-4. Configure routing to serve frontend and API routes
+- Framework Preset: Other
+- Root Directory: repository root
+- Build Command: `npm run build`
+- Output Directory: `frontend/dist`
 
 ## Testing After Deployment
 
-1. **Frontend**: Visit `https://your-app.vercel.app`
-2. **Backend Health**: Visit `https://your-app.vercel.app/api/health`
-3. **Check CORS**: Should work from the same domain
-
-## Troubleshooting
-
-### API 404 errors from frontend
-
-- Verify `CLIENT_ORIGINS` in Vercel environment variables
-- Check that API calls use paths like `/api/buses`, `/api/routes`, etc.
-- Frontend default uses `/api` as base URL
-
-### CORS errors
-
-- Add frontend URL to `CLIENT_ORIGINS` environment variable
-- Format: `https://your-app.vercel.app` (no trailing slash)
-- Multiple URLs separated by commas
-
-### Build failures
-
-- Check build logs in Vercel dashboard
-- Ensure all required dependencies are in package.json
-- Verify Node.js version (18+ recommended)
+1. Frontend: `https://your-app.vercel.app`
+2. Backend health: `https://your-app.vercel.app/api/health`
+3. API examples: `/api/buses/nearby`, `/api/routes/:id/tracking`
 
 ## Local Testing Before Deployment
 
 ```bash
-# Terminal 1 - Backend
-cd backend
-npm install
-npm start
-
-# Terminal 2 - Frontend
-cd frontend
 npm install
 npm run build
-npm run preview
+npm run dev:backend
+npm run dev:frontend
 ```
-
-## Updating the Deployment
-
-Simply push changes to your Git repository. Vercel will automatically rebuild and redeploy.
 
 ## Important Files
 
-- `vercel.json` - Root configuration for monorepo routing
-- `backend/vercel.json` - Backend Node.js configuration
-- `frontend/vercel.json` - Frontend SPA configuration
+- `package.json` - root npm workspace and Vercel build scripts
+- `vercel.json` - root routing and build configuration
+- `api/index.js` - Vercel serverless entrypoint for the Express app
+
+## Native Dependency Install Error
+
+If Vercel reports `Cannot find native binding`, redeploy after this change. The root lockfile generated on Windows was removed because npm can omit Linux optional native packages from it. Vercel will now install fresh on Linux with `npm install --include=optional`.
