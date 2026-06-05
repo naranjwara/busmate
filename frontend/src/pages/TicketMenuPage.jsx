@@ -105,9 +105,8 @@ export default function TicketMenuPage() {
       <section className="ticket-menu-screen" aria-label="My tickets">
         <AppHeader
           actions={["bell", "account"]}
-          className="ticket-dashboard-appbar"
+          className="dashboard-app-header"
           locationLabel="Kos Dina, Bandung"
-          sticky
         />
 
         <div className="ticket-menu-content">
@@ -211,10 +210,7 @@ export default function TicketMenuPage() {
                     <RatingStars value={trip.rating} />
                     <div className="recent-trip-actions">
                       <button type="button">Report</button>
-                      <button
-                        className={trip.actionVariant}
-                        type="button"
-                      >
+                      <button className={trip.actionVariant} type="button">
                         {trip.action}
                       </button>
                     </div>

@@ -170,6 +170,28 @@ function DashboardPage() {
     setDestination(startingPoint);
   };
 
+  const handleSearch = () => {
+    if (destination.trim()) {
+      const searchParams = new URLSearchParams({
+        from: startingPoint,
+        to: destination,
+      });
+      window.location.href = `/routes/search?${searchParams.toString()}`;
+    }
+  };
+
+  const handleDestinationKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  const handleStartingPointKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <main className="dashboard-page">
       <section className="dashboard-screen" aria-label="BusMate dashboard">
@@ -188,9 +210,10 @@ function DashboardPage() {
                   <small>Starting Point</small>
                   <input
                     id="starting-point"
-                    readOnly
                     type="text"
                     value={startingPoint}
+                    onChange={(event) => setStartingPoint(event.target.value)}
+                    onKeyPress={handleStartingPointKeyPress}
                   />
                 </span>
               </label>
@@ -205,6 +228,7 @@ function DashboardPage() {
                     placeholder="Where are you going?"
                     value={destination}
                     onChange={(event) => setDestination(event.target.value)}
+                    onKeyPress={handleDestinationKeyPress}
                   />
                 </span>
               </label>

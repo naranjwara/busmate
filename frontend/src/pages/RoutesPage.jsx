@@ -152,10 +152,9 @@ export default function RoutesPage() {
   return (
     <main className="routes-page">
       <AppHeader
-        actions={["filter"]}
-        className="routes-nav"
-        locationLabel="Near you"
-        sticky
+        actions={["bell", "account"]}
+        className="dashboard-app-header"
+        locationLabel="Kos Dina, Bandung"
       />
 
       <section className="routes-user-context" aria-label="Nearby buses summary">

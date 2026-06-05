@@ -4,6 +4,7 @@
   min-height: 100dvh;
   background-color: #f9f9fa;
   color: #1a1c1d;
+  padding: 0px 0px 120px;
 }
 
 /* Header */
@@ -343,6 +344,33 @@
   cursor: pointer;
   transition: all 0.2s;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.payment-button-pay:disabled {
+  cursor: wait;
+  opacity: 0.9;
+}
+
+.payment-loading-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.payment-loading-spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 3px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #ffffff;
+  border-radius: 9999px;
+  animation: payment-spin 700ms linear infinite;
+}
+
+@keyframes payment-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .payment-button-pay:hover {

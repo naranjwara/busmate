@@ -1,6 +1,6 @@
 .app-header {
   display: flex;
-  width: 100%;
+  /* width: 100%; */
   align-items: center;
   justify-content: space-between;
   gap: 12px;
@@ -10,10 +10,10 @@
   border: 1px solid rgba(160, 65, 0, 0.16);
   border-radius: 16px;
   box-shadow: 0 12px 30px rgba(90, 65, 54, 0.08);
-  padding: 10px 12px;
+  padding: 10px 10px;
 }
 
-.app-header--sticky {
+/* .app-header--sticky {
   position: sticky;
   top: 0;
   z-index: 100;
@@ -21,7 +21,7 @@
   border-right: 0;
   border-left: 0;
   border-radius: 0 0 18px 18px;
-}
+} */
 
 .app-header-location {
   display: flex;

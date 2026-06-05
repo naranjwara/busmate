@@ -2,9 +2,11 @@ import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import RoutesPage from "./pages/RoutesPage";
+import RoutesResult from "./pages/RoutesResult";
 import RouteDetailPage from "./pages/RouteDetailPage";
 import BusTrackingPage from "./pages/BusTrackingPage";
 import PaymentMethodPage from "./pages/PaymentMethodPage";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import ProfilePage from "./pages/ProfilePage";
 import TicketMenuPage from "./pages/TicketMenuPage";
 import { isAuthenticated } from "./utils/auth";
@@ -55,6 +57,10 @@ function App() {
     return <RoutesPage />;
   }
 
+  if (currentPath === "/routes/search") {
+    return <RoutesResult />;
+  }
+
   if (currentPath.startsWith("/routes/")) {
     return <RouteDetailPage />;
   }
@@ -65,6 +71,10 @@ function App() {
 
   if (currentPath === "/payment-method") {
     return <PaymentMethodPage />;
+  }
+
+  if (currentPath === "/payment-success") {
+    return <PaymentSuccessPage />;
   }
 
   if (currentPath === "/profile") {

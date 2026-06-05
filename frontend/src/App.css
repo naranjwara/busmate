@@ -473,7 +473,7 @@
   gap: 24px;
   height: 100vh;
   overflow-y: auto;
-  padding: 12px 16px 166px;
+  padding: 10px 10px 90px;
 }
 
 .dashboard-top,
@@ -535,9 +535,9 @@
   gap: 12px;
 }
 
-.dashboard-app-header {
+/* .dashboard-app-header {
   margin-top: 16px;
-}
+} */
 
 .dashboard-trip-bar {
   display: flex;

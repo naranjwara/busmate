@@ -1,4 +1,5 @@
 .routes-page {
+  margin: 10px 10px;
   min-height: max(884px, 100vh);
   background: #f9f9fa;
   color: #1a1c1d;

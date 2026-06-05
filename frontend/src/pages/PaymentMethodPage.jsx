@@ -73,9 +73,21 @@ function PaymentOptionTrailing({ isSelected, status }) {
 export default function PaymentMethodPage() {
   const [quantity, setQuantity] = useState(2);
   const [selectedPayment, setSelectedPayment] = useState("qris");
+  const [isPaying, setIsPaying] = useState(false);
 
   const ticketPrice = 5000;
   const totalAmount = ticketPrice * quantity;
+
+  const handlePayNow = () => {
+    if (isPaying) {
+      return;
+    }
+
+    setIsPaying(true);
+    window.setTimeout(() => {
+      window.location.assign("/payment-success");
+    }, 2000);
+  };
 
   return (
     <main className="payment-method-page">
@@ -200,8 +212,20 @@ export default function PaymentMethodPage() {
 
       {/* Pay Now Button */}
       <div className="payment-action-container">
-        <button className="payment-button-pay" type="button">
-          PAY NOW
+        <button
+          className="payment-button-pay"
+          type="button"
+          onClick={handlePayNow}
+          disabled={isPaying}
+        >
+          {isPaying ? (
+            <span className="payment-loading-label">
+              <span className="payment-loading-spinner" aria-hidden="true" />
+              Processing
+            </span>
+          ) : (
+            "PAY NOW"
+          )}
         </button>
       </div>
 
