@@ -203,7 +203,10 @@ function DashboardPage() {
               locationLabel="Kos Dina, Bandung"
             />
 
-            <section className="dashboard-route-search" aria-label="Trip search">
+            <section
+              className="dashboard-route-search"
+              aria-label="Trip search"
+            >
               <label className="dashboard-route-field" htmlFor="starting-point">
                 <Icon name="radio" />
                 <span>

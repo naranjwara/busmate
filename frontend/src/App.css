@@ -2,9 +2,7 @@
   min-height: 100vh;
   display: grid;
   place-items: center;
-  background:
-    linear-gradient(180deg, #f9f9fa 0%, #ffffff 100%),
-    #ffffff;
+  background: linear-gradient(180deg, #f9f9fa 0%, #ffffff 100%), #ffffff;
 }
 
 .login-screen {
@@ -14,9 +12,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 64px 16px 24px;
-  background:
-    linear-gradient(180deg, #f9f9fa 0%, #ffffff 100%),
-    #ffffff;
+  background: linear-gradient(180deg, #f9f9fa 0%, #ffffff 100%), #ffffff;
 }
 
 .login-header {
@@ -228,9 +224,7 @@
   min-height: 100vh;
   display: grid;
   place-items: center;
-  background:
-    linear-gradient(180deg, #f9f9fa 0%, #ffffff 100%),
-    #ffffff;
+  background: linear-gradient(180deg, #f9f9fa 0%, #ffffff 100%), #ffffff;
 }
 
 .register-screen {
@@ -239,9 +233,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  background:
-    linear-gradient(180deg, #f9f9fa 0%, #ffffff 100%),
-    #ffffff;
+  background: linear-gradient(180deg, #f9f9fa 0%, #ffffff 100%), #ffffff;
 }
 
 .register-header {
@@ -462,9 +454,7 @@
   width: min(100%, 390px);
   min-height: 100vh;
   overflow: hidden;
-  background:
-    linear-gradient(180deg, #f9f9fa 0%, #ffffff 100%),
-    #ffffff;
+  background: linear-gradient(180deg, #f9f9fa 0%, #ffffff 100%), #ffffff;
 }
 
 .dashboard-content {
@@ -770,8 +760,7 @@
   min-height: 192px;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(160, 65, 0, 0.12), transparent 32%),
-    #eeeeef;
+    linear-gradient(135deg, rgba(160, 65, 0, 0.12), transparent 32%), #eeeeef;
 }
 
 .map-image-wrap img,

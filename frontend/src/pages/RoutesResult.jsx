@@ -253,7 +253,9 @@ export default function RoutesResult() {
                   <p className="route-eta">
                     {route.eta} <span className="eta-unit">mins</span>
                   </p>
-                  <span className={`status-badge status-${route.statusVariant}`}>
+                  <span
+                    className={`status-badge status-${route.statusVariant}`}
+                  >
                     {route.status}
                   </span>
                 </div>

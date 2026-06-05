@@ -32,7 +32,11 @@ function Icon({ name }) {
   };
 
   return (
-    <svg className="payment-success-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <svg
+      className="payment-success-icon"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
       {paths[name]}
     </svg>
   );
@@ -40,18 +44,13 @@ function Icon({ name }) {
 
 function QrPattern() {
   const blocks = [
-    0, 1, 2, 3, 4, 6, 8, 10, 11, 12, 13, 14,
-    16, 20, 22, 24, 26, 28, 30, 31, 34, 35,
-    36, 38, 40, 42, 44, 46, 48, 50, 51, 52,
-    54, 56, 58, 60, 62, 64, 66, 67, 70, 71,
-    72, 73, 74, 76, 78, 80, 82, 84, 86, 88,
-    90, 92, 94, 96, 97, 100, 102, 103, 105,
-    108, 109, 111, 113, 115, 118, 120, 122,
-    124, 126, 128, 130, 132, 134, 136, 138,
-    140, 142, 144, 146, 148, 150, 152, 154,
-    156, 158, 160, 162, 164, 166, 168, 170,
-    172, 174, 176, 178, 180, 182, 184, 186,
-    188, 190, 192, 194, 196, 198, 200, 202,
+    0, 1, 2, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 20, 22, 24, 26, 28, 30, 31, 34,
+    35, 36, 38, 40, 42, 44, 46, 48, 50, 51, 52, 54, 56, 58, 60, 62, 64, 66, 67,
+    70, 71, 72, 73, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 97, 100,
+    102, 103, 105, 108, 109, 111, 113, 115, 118, 120, 122, 124, 126, 128, 130,
+    132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152, 154, 156, 158, 160,
+    162, 164, 166, 168, 170, 172, 174, 176, 178, 180, 182, 184, 186, 188, 190,
+    192, 194, 196, 198, 200, 202,
   ];
 
   return (
@@ -92,7 +91,10 @@ export default function PaymentSuccessPage() {
           <p>Your ticket is ready for boarding.</p>
         </header>
 
-        <section className="payment-success-qr-card" aria-label="Ticket QR code">
+        <section
+          className="payment-success-qr-card"
+          aria-label="Ticket QR code"
+        >
           <div className="payment-success-qr-box">
             <QrPattern />
           </div>
@@ -106,7 +108,12 @@ export default function PaymentSuccessPage() {
             label="Bus ID"
             value="AH123bh"
           />
-          <DetailCard icon="person" tone="driver" label="Driver" value="Pak Budi" />
+          <DetailCard
+            icon="person"
+            tone="driver"
+            label="Driver"
+            value="Pak Budi"
+          />
           <DetailCard
             icon="schedule"
             tone="arrival"
@@ -116,7 +123,10 @@ export default function PaymentSuccessPage() {
         </section>
 
         <section className="payment-success-actions">
-          <button type="button" onClick={() => window.location.assign("/tickets")}>
+          <button
+            type="button"
+            onClick={() => window.location.assign("/tickets")}
+          >
             View My Ticket
           </button>
           <button
