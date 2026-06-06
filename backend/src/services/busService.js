@@ -14,9 +14,21 @@ const nearbyBuses = [
   {
     id: 'bus-12',
     number: '12',
-    name: 'Bus 12 - Sukajadi',
+    name: 'Bus 12 - Leuwipanjang',
     etaMinutes: 11,
     status: 'FULL',
+    routeId: 'kampus-mall',
+    position: {
+      lat: -6.88478,
+      lng: 107.60425,
+    },
+  },
+  {
+    id: 'bus-13',
+    number: '13',
+    name: 'Bus 13 - Sukajadi',
+    etaMinutes: 11,
+    status: 'NORMAL',
     routeId: 'kampus-mall',
     position: {
       lat: -6.88478,

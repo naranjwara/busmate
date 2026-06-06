@@ -1,5 +1,7 @@
 import BottomNavigation from "../components/BottomNavigation";
 import AppHeader from "../components/AppHeader";
+import AppToast from "../components/AppToast";
+import { useToast } from "../hooks/useToast";
 import "./TicketMenuPage.css";
 
 const recentTrips = [
@@ -100,6 +102,8 @@ function RatingStars({ value }) {
 }
 
 export default function TicketMenuPage() {
+  const { toast, showToast, hideToast } = useToast();
+
   return (
     <main className="ticket-menu-page">
       <section className="ticket-menu-screen" aria-label="My tickets">
@@ -107,6 +111,8 @@ export default function TicketMenuPage() {
           actions={["bell", "account"]}
           className="dashboard-app-header"
           locationLabel="Kos Dina, Bandung"
+          showToast={showToast}
+          sticky
         />
 
         <div className="ticket-menu-content">
@@ -145,10 +151,24 @@ export default function TicketMenuPage() {
               </div>
 
               <div className="active-ticket-actions">
-                <button className="ticket-primary-button" type="button">
+                <button
+                  className="ticket-primary-button"
+                  type="button"
+                  onClick={() => window.location.assign("/show-qr")}
+                >
                   Show QR
                 </button>
-                <button className="ticket-outline-button" type="button">
+                <button
+                  className="ticket-outline-button"
+                  type="button"
+                  onClick={() =>
+                    showToast({
+                      title: "Ticket Details",
+                      message: "This feature will be available soon",
+                      type: "info",
+                    })
+                  }
+                >
                   Details
                 </button>
               </div>
@@ -234,6 +254,13 @@ export default function TicketMenuPage() {
         </div>
 
         <BottomNavigation currentPage="Tickets" />
+        <AppToast
+          isOpen={toast.open}
+          title={toast.title}
+          message={toast.message}
+          type={toast.type}
+          onClose={hideToast}
+        />
       </section>
     </main>
   );

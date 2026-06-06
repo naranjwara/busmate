@@ -8,6 +8,7 @@ import BusTrackingPage from "./pages/BusTrackingPage";
 import PaymentMethodPage from "./pages/PaymentMethodPage";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import ProfilePage from "./pages/ProfilePage";
+import ShowQRPage from "./pages/ShowQRPage";
 import TicketMenuPage from "./pages/TicketMenuPage";
 import { isAuthenticated } from "./utils/auth";
 import "./App.css";
@@ -65,7 +66,7 @@ function App() {
     return <RouteDetailPage />;
   }
 
-  if (currentPath === "/bus-tracking") {
+  if (currentPath === "/bus-tracking" || currentPath.startsWith("/bus-tracking/")) {
     return <BusTrackingPage />;
   }
 
@@ -83,6 +84,10 @@ function App() {
 
   if (currentPath === "/tickets") {
     return <TicketMenuPage />;
+  }
+
+  if (currentPath === "/show-qr") {
+    return <ShowQRPage />;
   }
 
   return <RegisterPage />;

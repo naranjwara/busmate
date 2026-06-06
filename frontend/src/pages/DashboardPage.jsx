@@ -4,15 +4,48 @@ import "leaflet/dist/leaflet.css";
 import avatar from "../assets/figma-dashboard/commuter-avatar.png";
 import AppHeader from "../components/AppHeader";
 import BottomNavigation from "../components/BottomNavigation";
+import { useToast } from "../hooks/useToast"; 
+import AppToast from "../components/AppToast";
 
 const favoriteRoutes = [
-  { name: "Kos - Kampus", eta: "12 min", icon: "homeWork" },
-  { name: "Kampus - Mall", eta: "24 min", icon: "school" },
+  {
+    name: "Kos - Kampus",
+    from: "Kos Dina, Bandung",
+    to: "Satu University",
+    eta: "12 min",
+    icon: "homeWork",
+  },
+  {
+    name: "Kampus - Mall",
+    from: "Satu University",
+    to: "TSM Bandung",
+    eta: "24 min",
+    icon: "school",
+  },
 ];
 
 const nearbyBuses = [
-  { number: "05", name: "Bus 05 - Dago", eta: "4 mins", status: "NORMAL" },
-  { number: "12", name: "Bus 12 - Sukajadi", eta: "11 mins", status: "FULL" },
+  {
+    id: "05",
+    number: "05",
+    routeName: "Dipatiukur - Jatinangor",
+    eta: "4 mins",
+    status: "NORMAL",
+  },
+  {
+    id: "12",
+    number: "12",
+    routeName: "Leuwipanjang - Dago",
+    eta: "11 mins",
+    status: "FULL",
+  },
+  {
+    id: "08",
+    number: "08",
+    routeName: "Cijerah - Derwati",
+    eta: "9 mins",
+    status: "NORMAL",
+  },
 ];
 
 function Icon({ name }) {
@@ -164,6 +197,7 @@ function DashboardPage() {
   const mapCenter = useMemo(() => [-6.89044, 107.60958], []);
   const [startingPoint, setStartingPoint] = useState("Kos Dina, Bandung");
   const [destination, setDestination] = useState("");
+  const { toast, showToast, hideToast } = useToast();
 
   const handleSwapLocations = () => {
     setStartingPoint(destination);
@@ -192,6 +226,19 @@ function DashboardPage() {
     }
   };
 
+  const handleNearbyBusClick = (busId) => {
+    window.location.assign(`/bus-tracking/${busId}`);
+  };
+
+  const handleFavoriteRouteClick = (route) => {
+    const searchParams = new URLSearchParams({
+      from: route.from,
+      to: route.to,
+    });
+
+    window.location.href = `/routes/search?${searchParams.toString()}`;
+  };
+
   return (
     <main className="dashboard-page">
       <section className="dashboard-screen" aria-label="BusMate dashboard">
@@ -199,8 +246,10 @@ function DashboardPage() {
           <header className="dashboard-top dashboard-trip-search">
             <AppHeader
               actions={["bell", "account"]}
+              showToast={showToast}
               className="dashboard-app-header"
               locationLabel="Kos Dina, Bandung"
+              sticky
             />
 
             <section
@@ -280,6 +329,24 @@ function DashboardPage() {
                 className="dashboard-icon-button"
                 type="button"
                 aria-label="Open map"
+                tabIndex={0}
+                role="button"
+                onClick={() =>
+                  showToast({
+                    title: "Coming Soon",
+                    message: "Interactive map will be available soon",
+                    type: "info",
+                  })
+                }
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    showToast({
+                      title: "Coming Soon",
+                      message: "Interactive map will be available soon",
+                      type: "info",
+                    });
+                  }
+                }}
               >
                 <Icon name="openFull" />
               </button>
@@ -293,7 +360,18 @@ function DashboardPage() {
             </div>
             <div className="favorite-scroll">
               {favoriteRoutes.map((route) => (
-                <article className="favorite-card" key={route.name}>
+                <article
+                  className="favorite-card"
+                  key={route.name}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleFavoriteRouteClick(route)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") {
+                      handleFavoriteRouteClick(route);
+                    }
+                  }}
+                >
                   <Icon name={route.icon} />
                   <h3>{route.name}</h3>
                   <p>
@@ -315,11 +393,23 @@ function DashboardPage() {
             <h2>Bus Terdekat</h2>
             <div className="nearby-list">
               {nearbyBuses.map((bus) => (
-                <article className="bus-item" key={bus.number}>
+                <article
+                  className="bus-item"
+                  key={bus.number}
+                  onClick={() => handleNearbyBusClick(bus.id)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      handleNearbyBusClick(bus.id);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                >
                   <div className="bus-item-main">
                     <span className="bus-number">{bus.number}</span>
-                    <div>
-                      <h3>{bus.name}</h3>
+                    <div className="bus-item-text">
+                      <h3>{bus.routeName}</h3>
                       <div className="bus-detail-row">
                         <p>
                           ETA: <strong>{bus.eta}</strong>
@@ -379,6 +469,14 @@ function DashboardPage() {
         </button>
 
         <BottomNavigation currentPage="Home" />
+
+        <AppToast
+          isOpen={toast.open}
+          title={toast.title}
+          message={toast.message}
+          type={toast.type}
+          onClose={hideToast}
+        />
       </section>
     </main>
   );

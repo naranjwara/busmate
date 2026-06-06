@@ -148,8 +148,8 @@
 
 /* Route Card */
 .route-card {
-  background: #ffffff;
-  border: 1px solid #e2e2e3;
+  background: #fffaf3;
+  border: 1px solid #e2bfb0;
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 16px;
@@ -172,7 +172,8 @@
 .route-card-top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 12px;
 }
 
@@ -191,15 +192,13 @@
 .route-bus-box {
   background: #fed000;
   color: #231b00;
-  width: 58px;
-  min-width: 58px;
-  height: 58px;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
   border-radius: 8px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
   flex-shrink: 0;
 }
 
@@ -214,9 +213,9 @@
 }
 
 .route-bus-number {
-  font-weight: 700;
+  font-weight: 800;
   font-size: 14px;
-  line-height: 1;
+  line-height: 18px;
 }
 
 .route-text {
@@ -224,8 +223,8 @@
 }
 
 .route-name {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   font-family: "Chivo", sans-serif;
   color: #1a1c1d;
   margin: 0;
@@ -234,8 +233,8 @@
 
 .route-frequency {
   font-size: 12px;
-  font-weight: 500;
-  color: #5f5e5f;
+  font-weight: 600;
+  color: #5a4136;
   margin: 4px 0 0 0;
 }
 
@@ -249,10 +248,10 @@
 }
 
 .route-eta {
-  font-size: 28px;
+  font-size: 13px;
   font-weight: 700;
-  color: #ff6b00;
-  line-height: 1;
+  color: #a04100;
+  line-height: 18px;
   margin: 0;
 }
 
@@ -261,19 +260,30 @@
 }
 
 .eta-unit {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: inherit;
+  font-weight: 700;
   color: inherit;
 }
 
 .status-badge {
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0;
   white-space: nowrap;
+}
+
+.status-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: currentColor;
 }
 
 .status-badge.status-normal {

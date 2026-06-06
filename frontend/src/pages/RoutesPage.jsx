@@ -3,13 +3,16 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { getRouteTracking } from "../services/routeTrackingService";
 import AppHeader from "../components/AppHeader";
+import AppToast from "../components/AppToast";
 import BottomNavigation from "../components/BottomNavigation";
+import { useToast } from "../hooks/useToast";
 import "./RoutesPage.css";
 
 const routeResults = [
   {
     id: 1,
-    number: "Bus 05",
+    number: "05",
+    routeName: "Dipatiukur - Jatinangor",
     code: "AH123bh",
     eta: "5 mins away",
     distance: "1.2 km",
@@ -17,11 +20,13 @@ const routeResults = [
     statusVariant: "normal",
     driver: "Pak Budi",
     rating: "4.8",
-    driverImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuDer5xcBJ8tkBebcG99BUauYWh2KH3UgfutZz5Bn6S0UfqjOpSJC9z1wTF_4RvkIV5nF1GLBEp4WQdX43gouIRI3bUBaIyw_FUhXfHoxZRJLVZwSbcKCg8eZgSl7E717--arnQKcBHS9xRBHdqIk_6l-Dw_Iw1bSXh7N_aKNgVe9TaWT2H5cv4NoGUWSYAzq0xjsiEeQkgrOxXMvT7Cx3kjN7B8keSOUT3fv9qAVrLUszow3K8bNu1REhxnC1g9HS0yCOE9tqRljUI",
+    driverImage:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDer5xcBJ8tkBebcG99BUauYWh2KH3UgfutZz5Bn6S0UfqjOpSJC9z1wTF_4RvkIV5nF1GLBEp4WQdX43gouIRI3bUBaIyw_FUhXfHoxZRJLVZwSbcKCg8eZgSl7E717--arnQKcBHS9xRBHdqIk_6l-Dw_Iw1bSXh7N_aKNgVe9TaWT2H5cv4NoGUWSYAzq0xjsiEeQkgrOxXMvT7Cx3kjN7B8keSOUT3fv9qAVrLUszow3K8bNu1REhxnC1g9HS0yCOE9tqRljUI",
   },
   {
     id: 2,
-    number: "Bus 12",
+    number: "12",
+    routeName: "Ledeng - Cicaheum",
     code: "BK992xz",
     eta: "12 mins away",
     distance: "3.4 km",
@@ -29,11 +34,13 @@ const routeResults = [
     statusVariant: "full",
     driver: "Ibu Siti",
     rating: "4.9",
-    driverImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuBp4uycg-tnF26t4DSpWEOu2o5v3yyV7Xd1QKHW7r8KHniqa_-4uqvWKbm00RgriTVyqB5iSFyHejKcOH69WUGb9qyxdp0-5Mth3JKRRRyAlKnsU3mzGfpuc1_jfPIHmJBW1cBHUg9ER2Pgwo4e9p8_wqMRJNDDCLZMcBk1X43JcODS4HtUwUINSypz472fZwVJzouGnN_M7CYeUAY-i9E-iS-g9si4MhUu2sv-uqMiPRGbV8SPOmGqfCQAchSLrLwTVQq71qQvY-c",
+    driverImage:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBp4uycg-tnF26t4DSpWEOu2o5v3yyV7Xd1QKHW7r8KHniqa_-4uqvWKbm00RgriTVyqB5iSFyHejKcOH69WUGb9qyxdp0-5Mth3JKRRRyAlKnsU3mzGfpuc1_jfPIHmJBW1cBHUg9ER2Pgwo4e9p8_wqMRJNDDCLZMcBk1X43JcODS4HtUwUINSypz472fZwVJzouGnN_M7CYeUAY-i9E-iS-g9si4MhUu2sv-uqMiPRGbV8SPOmGqfCQAchSLrLwTVQq71qQvY-c",
   },
   {
     id: 3,
-    number: "Bus 08",
+    number: "08",
+    routeName: "Kampus - Cibiru",
     code: "CH441lk",
     eta: "18 mins away",
     distance: "5.1 km",
@@ -41,11 +48,13 @@ const routeResults = [
     statusVariant: "normal",
     driver: "Pak Agus",
     rating: "4.7",
-    driverImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuAUFFBr-2l9l4F2P3Cmo93We2xW0X0NpBAK9QV_nkNXeOpR4DMadS-1cbodsNsQ8QjPzTDfJ-pNVHFYLPfvjSvOV67w4OTm496QBusFTqiZxk_xt98gYwP6o2vDCyZdQpKua7ddemlxWGoMO7_h466U2bOsmz4XNdEbZULI7mBvy3ASlmvCDVu1tU8qhLBulHL4tgtW6_m2I9dSssU2ZL32Cp9Axae8NcKLGNO1ccrPwdm4OIqO_pGACSHoW2W4P2R_vsdqO_T1AW0",
+    driverImage:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAUFFBr-2l9l4F2P3Cmo93We2xW0X0NpBAK9QV_nkNXeOpR4DMadS-1cbodsNsQ8QjPzTDfJ-pNVHFYLPfvjSvOV67w4OTm496QBusFTqiZxk_xt98gYwP6o2vDCyZdQpKua7ddemlxWGoMO7_h466U2bOsmz4XNdEbZULI7mBvy3ASlmvCDVu1tU8qhLBulHL4tgtW6_m2I9dSssU2ZL32Cp9Axae8NcKLGNO1ccrPwdm4OIqO_pGACSHoW2W4P2R_vsdqO_T1AW0",
   },
   {
     id: 4,
-    number: "Bus 03",
+    number: "03",
+    routeName: "Ciroyom - Antapani",
     code: "DK204mn",
     eta: "22 mins away",
     distance: "6.0 km",
@@ -53,11 +62,13 @@ const routeResults = [
     statusVariant: "normal",
     driver: "Pak Rudi",
     rating: "4.6",
-    driverImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuDer5xcBJ8tkBebcG99BUauYWh2KH3UgfutZz5Bn6S0UfqjOpSJC9z1wTF_4RvkIV5nF1GLBEp4WQdX43gouIRI3bUBaIyw_FUhXfHoxZRJLVZwSbcKCg8eZgSl7E717--arnQKcBHS9xRBHdqIk_6l-Dw_Iw1bSXh7N_aKNgVe9TaWT2H5cv4NoGUWSYAzq0xjsiEeQkgrOxXMvT7Cx3kjN7B8keSOUT3fv9qAVrLUszow3K8bNu1REhxnC1g9HS0yCOE9tqRljUI",
+    driverImage:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDer5xcBJ8tkBebcG99BUauYWh2KH3UgfutZz5Bn6S0UfqjOpSJC9z1wTF_4RvkIV5nF1GLBEp4WQdX43gouIRI3bUBaIyw_FUhXfHoxZRJLVZwSbcKCg8eZgSl7E717--arnQKcBHS9xRBHdqIk_6l-Dw_Iw1bSXh7N_aKNgVe9TaWT2H5cv4NoGUWSYAzq0xjsiEeQkgrOxXMvT7Cx3kjN7B8keSOUT3fv9qAVrLUszow3K8bNu1REhxnC1g9HS0yCOE9tqRljUI",
   },
   {
     id: 5,
-    number: "Bus 16",
+    number: "16",
+    routeName: "Ciumbuleuit - Gedebage",
     code: "EF781qp",
     eta: "27 mins away",
     distance: "7.3 km",
@@ -65,7 +76,8 @@ const routeResults = [
     statusVariant: "full",
     driver: "Ibu Maya",
     rating: "4.8",
-    driverImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuBp4uycg-tnF26t4DSpWEOu2o5v3yyV7Xd1QKHW7r8KHniqa_-4uqvWKbm00RgriTVyqB5iSFyHejKcOH69WUGb9qyxdp0-5Mth3JKRRRyAlKnsU3mzGfpuc1_jfPIHmJBW1cBHUg9ER2Pgwo4e9p8_wqMRJNDDCLZMcBk1X43JcODS4HtUwUINSypz472fZwVJzouGnN_M7CYeUAY-i9E-iS-g9si4MhUu2sv-uqMiPRGbV8SPOmGqfCQAchSLrLwTVQq71qQvY-c",
+    driverImage:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBp4uycg-tnF26t4DSpWEOu2o5v3yyV7Xd1QKHW7r8KHniqa_-4uqvWKbm00RgriTVyqB5iSFyHejKcOH69WUGb9qyxdp0-5Mth3JKRRRyAlKnsU3mzGfpuc1_jfPIHmJBW1cBHUg9ER2Pgwo4e9p8_wqMRJNDDCLZMcBk1X43JcODS4HtUwUINSypz472fZwVJzouGnN_M7CYeUAY-i9E-iS-g9si4MhUu2sv-uqMiPRGbV8SPOmGqfCQAchSLrLwTVQq71qQvY-c",
   },
 ];
 
@@ -132,6 +144,7 @@ function Icon({ name }) {
 
 export default function RoutesPage() {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const { toast, showToast, hideToast } = useToast();
   const selectedRoute = routeResults[selectedIndex];
 
   useEffect(() => {
@@ -155,12 +168,20 @@ export default function RoutesPage() {
         actions={["bell", "account"]}
         className="dashboard-app-header"
         locationLabel="Kos Dina, Bandung"
+        showToast={showToast}
+        sticky
       />
 
-      <section className="routes-user-context" aria-label="Nearby buses summary">
+      <section
+        className="routes-user-context"
+        aria-label="Nearby buses summary"
+      >
         <span className="routes-context-eyebrow">Live nearby routes</span>
         <h1>Nearest buses around you</h1>
-        <p>See the 5 closest active buses and pick the fastest ride from your current area.</p>
+        <p>
+          See the 5 closest active buses and pick the fastest ride from your
+          current area.
+        </p>
       </section>
 
       <section className="routes-map-card">
@@ -200,20 +221,28 @@ export default function RoutesPage() {
             }}
           >
             <div className="route-result-top">
-              <div>
-                <div className="route-result-title-row">
-                  <span className="route-number">{route.number}</span>
-                  <span className="route-code">{route.code}</span>
-                </div>
-                <div className="route-result-meta-row">
-                  <span className="route-result-meta-item">
-                    <Icon name="schedule" />
-                    {route.eta}
-                  </span>
-                  <span className="route-result-dot">•</span>
-                  <span className="route-result-meta-item">
-                    {route.distance}
-                  </span>
+              <div className="route-result-main">
+                <span className="route-number">{route.number}</span>
+                <div className="route-result-text">
+                  <div className="route-result-title-row">
+                    <div className="route-result-name-wrap">
+                      <h3 className="route-result-name">
+                        <span>{route.routeName}</span>
+                        <span>{route.routeName}</span>
+                      </h3>
+                    </div>
+                    <span className="route-code">{route.code}</span>
+                  </div>
+                  <div className="route-result-meta-row">
+                    <span className="route-result-meta-item">
+                      <Icon name="schedule" />
+                      {route.eta}
+                    </span>
+                    <span className="route-result-dot">•</span>
+                    <span className="route-result-meta-item">
+                      {route.distance}
+                    </span>
+                  </div>
                 </div>
               </div>
               <span className={`status-pill ${route.statusVariant}`}>
@@ -260,7 +289,17 @@ export default function RoutesPage() {
             <Icon name="arrow_forward" />
           </button>
         </article>
-        <article className="banner-card banner-ticket">
+        <article
+          className="banner-card banner-ticket"
+          role="button"
+          tabIndex={0}
+          onClick={() => window.location.assign("/show-qr")}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              window.location.assign("/show-qr");
+            }
+          }}
+        >
           <div>
             <h3>Instant Ticket</h3>
             <p>Purchase your fare now and skip the queue.</p>
@@ -270,6 +309,13 @@ export default function RoutesPage() {
       </section>
 
       <BottomNavigation currentPage="Routes" />
+      <AppToast
+        isOpen={toast.open}
+        title={toast.title}
+        message={toast.message}
+        type={toast.type}
+        onClose={hideToast}
+      />
     </main>
   );
 }

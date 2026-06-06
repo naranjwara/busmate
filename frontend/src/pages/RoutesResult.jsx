@@ -6,7 +6,7 @@ const availableRoutes = [
   {
     id: 1,
     number: "05",
-    name: "Bus 05 - Dago",
+    routeName: "Dipatiukur - Jatinangor",
     frequency: "Every 8 mins",
     eta: "4",
     status: "Normal",
@@ -18,7 +18,7 @@ const availableRoutes = [
   {
     id: 2,
     number: "12",
-    name: "Bus 12 - Sukajadi",
+    routeName: "Ledeng - Cicaheum",
     frequency: "Every 12 mins",
     eta: "12",
     status: "Full",
@@ -30,7 +30,7 @@ const availableRoutes = [
   {
     id: 3,
     number: "01",
-    name: "Bus 01 - Ledeng",
+    routeName: "Kosambi - Dago",
     frequency: "Every 10 mins",
     eta: "15",
     status: "Normal",
@@ -240,12 +240,13 @@ export default function RoutesResult() {
               <div className="route-card-top">
                 <div className="route-bus-info">
                   <div className="route-bus-box" aria-hidden="true">
-                    <Icon name="bus" />
                     <span className="route-bus-number">{route.number}</span>
                   </div>
                   <div className="route-text">
-                    <h3 className="route-name">{route.name}</h3>
-                    <p className="route-frequency">{route.frequency}</p>
+                    <h3 className="route-name">{route.routeName}</h3>
+                    <p className="route-frequency">
+                      Bus {route.number} • {route.frequency}
+                    </p>
                   </div>
                 </div>
 

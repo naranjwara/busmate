@@ -41,14 +41,25 @@ export default function AppHeader({
   className = "",
   locationLabel = "Near you",
   sticky = false,
+  showToast,
 }) {
+  const handleActionClick = (action) => {
+    if (action === "account") {
+      window.location.href = "/profile";
+      return;
+    }
+
+    if (action === "bell") {
+      showToast?.({
+        title: "Coming Soon",
+        message: "This feature will be available soon",
+        type: "info",
+      });
+    }
+  };
   return (
     <header
-      className={[
-        "app-header",
-        sticky ? "app-header--sticky" : "",
-        className,
-      ]
+      className={["app-header", sticky ? "app-header--sticky" : "", className]
         .filter(Boolean)
         .join(" ")}
     >
@@ -69,6 +80,7 @@ export default function AppHeader({
               className="app-header-button"
               key={action}
               type="button"
+              onClick={() => handleActionClick(action)}
               aria-label={
                 action === "bell"
                   ? "Notifications"
