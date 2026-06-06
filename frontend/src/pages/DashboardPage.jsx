@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import avatar from "../assets/figma-dashboard/commuter-avatar.png";
@@ -45,6 +45,44 @@ const nearbyBuses = [
     routeName: "Cijerah - Derwati",
     eta: "9 mins",
     status: "NORMAL",
+  },
+];
+
+const walkthroughSteps = [
+  {
+    target: "current-location",
+    eyebrow: "Langkah 1 dari 5",
+    title: "Current Location",
+    message:
+      "Header ini menampilkan lokasi aktif kamu, jadi pencarian rute selalu punya titik awal yang jelas.",
+  },
+  {
+    target: "interactive-map",
+    eyebrow: "Langkah 2 dari 5",
+    title: "Interactive Map",
+    message:
+      "Pantau area sekitar secara visual dan buka mode penuh saat butuh melihat posisi bus lebih detail.",
+  },
+  {
+    target: "favorite-routes",
+    eyebrow: "Langkah 3 dari 5",
+    title: "Rute Favorit",
+    message:
+      "Simpan perjalanan rutin seperti kos ke kampus agar bisa langsung mencari rute tanpa mengetik ulang.",
+  },
+  {
+    target: "nearby-buses",
+    eyebrow: "Langkah 4 dari 5",
+    title: "Bus Terdekat",
+    message:
+      "Lihat bus yang paling dekat, ETA, dan kondisi kepadatan sebelum kamu memutuskan naik.",
+  },
+  {
+    target: "commuter-talk",
+    eyebrow: "Langkah 5 dari 5",
+    title: "Commuter Talk",
+    message:
+      "Forum singkat untuk membaca update sesama commuter tentang antrean, cuaca, dan kondisi rute.",
   },
 ];
 
@@ -197,7 +235,48 @@ function DashboardPage() {
   const mapCenter = useMemo(() => [-6.89044, 107.60958], []);
   const [startingPoint, setStartingPoint] = useState("Kos Dina, Bandung");
   const [destination, setDestination] = useState("");
+  const [walkthroughStep, setWalkthroughStep] = useState(() => {
+    if (sessionStorage.getItem("busmate_dashboard_walkthrough_pending")) {
+      sessionStorage.removeItem("busmate_dashboard_walkthrough_pending");
+      return 0;
+    }
+
+    return null;
+  });
   const { toast, showToast, hideToast } = useToast();
+  const activeWalkthrough = walkthroughStep !== null;
+  const activeStep = activeWalkthrough
+    ? walkthroughSteps[walkthroughStep]
+    : null;
+
+  useEffect(() => {
+    if (!activeStep) {
+      return;
+    }
+
+    const targetElement = document.querySelector(
+      `[data-walkthrough-target="${activeStep.target}"]`,
+    );
+
+    targetElement?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "nearest",
+    });
+  }, [activeStep]);
+
+  const closeWalkthrough = () => {
+    setWalkthroughStep(null);
+  };
+
+  const handleWalkthroughNext = () => {
+    if (walkthroughStep === walkthroughSteps.length - 1) {
+      closeWalkthrough();
+      return;
+    }
+
+    setWalkthroughStep((currentStep) => currentStep + 1);
+  };
 
   const handleSwapLocations = () => {
     setStartingPoint(destination);
@@ -210,7 +289,7 @@ function DashboardPage() {
         from: startingPoint,
         to: destination,
       });
-      window.location.href = `/routes/search?${searchParams.toString()}`;
+      window.location.assign(`/routes/search?${searchParams.toString()}`);
     }
   };
 
@@ -236,7 +315,7 @@ function DashboardPage() {
       to: route.to,
     });
 
-    window.location.href = `/routes/search?${searchParams.toString()}`;
+    window.location.assign(`/routes/search?${searchParams.toString()}`);
   };
 
   return (
@@ -244,13 +323,22 @@ function DashboardPage() {
       <section className="dashboard-screen" aria-label="BusMate dashboard">
         <div className="dashboard-content">
           <header className="dashboard-top dashboard-trip-search">
-            <AppHeader
-              actions={["bell", "account"]}
-              showToast={showToast}
-              className="dashboard-app-header"
-              locationLabel="Kos Dina, Bandung"
-              sticky
-            />
+            <div
+              className={`walkthrough-target ${
+                activeStep?.target === "current-location"
+                  ? "is-walkthrough-active"
+                  : ""
+              }`}
+              data-walkthrough-target="current-location"
+            >
+              <AppHeader
+                actions={["bell", "account"]}
+                showToast={showToast}
+                className="dashboard-app-header"
+                locationLabel="Kos Dina, Bandung"
+                sticky
+              />
+            </div>
 
             <section
               className="dashboard-route-search"
@@ -295,7 +383,15 @@ function DashboardPage() {
             </section>
           </header>
 
-          <section className="map-card" aria-label="Live map preview">
+          <section
+            className={`map-card walkthrough-target ${
+              activeStep?.target === "interactive-map"
+                ? "is-walkthrough-active"
+                : ""
+            }`}
+            aria-label="Live map preview"
+            data-walkthrough-target="interactive-map"
+          >
             <div className="map-image-wrap">
               <MapContainer
                 center={mapCenter}
@@ -353,7 +449,14 @@ function DashboardPage() {
             </div>
           </section>
 
-          <section className="dashboard-section favorite-section">
+          <section
+            className={`dashboard-section favorite-section walkthrough-target ${
+              activeStep?.target === "favorite-routes"
+                ? "is-walkthrough-active"
+                : ""
+            }`}
+            data-walkthrough-target="favorite-routes"
+          >
             <div className="section-heading">
               <h2>Rute Favorit</h2>
               <button type="button">View All</button>
@@ -389,7 +492,14 @@ function DashboardPage() {
             </div>
           </section>
 
-          <section className="dashboard-section">
+          <section
+            className={`dashboard-section walkthrough-target ${
+              activeStep?.target === "nearby-buses"
+                ? "is-walkthrough-active"
+                : ""
+            }`}
+            data-walkthrough-target="nearby-buses"
+          >
             <h2>Bus Terdekat</h2>
             <div className="nearby-list">
               {nearbyBuses.map((bus) => (
@@ -429,7 +539,14 @@ function DashboardPage() {
             </div>
           </section>
 
-          <section className="dashboard-section commuter-section">
+          <section
+            className={`dashboard-section commuter-section walkthrough-target ${
+              activeStep?.target === "commuter-talk"
+                ? "is-walkthrough-active"
+                : ""
+            }`}
+            data-walkthrough-target="commuter-talk"
+          >
             <div className="section-heading">
               <h2>Commuter Talk</h2>
               <button type="button">Forum</button>
@@ -469,6 +586,32 @@ function DashboardPage() {
         </button>
 
         <BottomNavigation currentPage="Home" />
+
+        {activeStep ? (
+          <div className="dashboard-walkthrough" role="dialog" aria-modal="true">
+            <div className="walkthrough-progress" aria-hidden="true">
+              {walkthroughSteps.map((step, index) => (
+                <span
+                  className={index === walkthroughStep ? "active" : ""}
+                  key={step.target}
+                ></span>
+              ))}
+            </div>
+            <p>{activeStep.eyebrow}</p>
+            <h2>{activeStep.title}</h2>
+            <span>{activeStep.message}</span>
+            <div className="walkthrough-actions">
+              <button type="button" onClick={closeWalkthrough}>
+                Lewati
+              </button>
+              <button type="button" onClick={handleWalkthroughNext}>
+                {walkthroughStep === walkthroughSteps.length - 1
+                  ? "Selesai"
+                  : "Lanjut"}
+              </button>
+            </div>
+          </div>
+        ) : null}
 
         <AppToast
           isOpen={toast.open}

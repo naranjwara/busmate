@@ -1174,6 +1174,112 @@
   height: 24px;
 }
 
+.walkthrough-target {
+  position: relative;
+  border-radius: 14px;
+  transition:
+    box-shadow 180ms ease,
+    outline-color 180ms ease;
+}
+
+.walkthrough-target.is-walkthrough-active {
+  z-index: 900;
+  outline: 3px solid #fed000;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 999px rgba(26, 28, 29, 0.48);
+}
+
+.dashboard-walkthrough {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 94px;
+  z-index: 950;
+  border: 1px solid #e2bfb0;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 16px;
+  box-shadow: 0 18px 40px rgba(90, 65, 54, 0.22);
+}
+
+.walkthrough-progress {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.walkthrough-progress span {
+  height: 4px;
+  flex: 1;
+  border-radius: 9999px;
+  background: #eeeeef;
+}
+
+.walkthrough-progress span.active {
+  background: #a04100;
+}
+
+.dashboard-walkthrough p,
+.dashboard-walkthrough h2 {
+  margin: 0;
+}
+
+.dashboard-walkthrough p {
+  color: #a04100;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.dashboard-walkthrough h2 {
+  margin-top: 4px;
+  color: #1a1c1d;
+  font-family: Chivo, Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.dashboard-walkthrough > span {
+  display: block;
+  margin-top: 6px;
+  color: #5a4136;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.walkthrough-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.walkthrough-actions button {
+  min-width: 82px;
+  min-height: 40px;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.walkthrough-actions button:first-child {
+  border: 1px solid #e2bfb0;
+  background: #ffffff;
+  color: #5a4136;
+}
+
+.walkthrough-actions button:last-child {
+  border: 0;
+  background: #fed000;
+  color: #6f5900;
+}
+
 .dashboard-nav {
   position: absolute;
   left: 0;

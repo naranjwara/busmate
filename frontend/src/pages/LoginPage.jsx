@@ -6,6 +6,7 @@ function LoginPage() {
   const handleLogin = (event) => {
     event.preventDefault()
     createBypassLoginToken()
+    sessionStorage.setItem('busmate_dashboard_walkthrough_pending', 'true')
     window.location.assign('/dashboard')
   }
 
