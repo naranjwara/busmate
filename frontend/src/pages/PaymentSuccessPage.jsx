@@ -112,7 +112,7 @@ export default function PaymentSuccessPage() {
             icon="person"
             tone="driver"
             label="Driver"
-            value="Pak Budi"
+            value="Mr. Budi"
           />
           <DetailCard
             icon="schedule"

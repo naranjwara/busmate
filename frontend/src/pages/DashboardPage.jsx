@@ -51,38 +51,38 @@ const nearbyBuses = [
 const walkthroughSteps = [
   {
     target: "current-location",
-    eyebrow: "Langkah 1 dari 5",
+    eyebrow: "Step 1 of 5",
     title: "Current Location",
     message:
-      "Header ini menampilkan lokasi aktif kamu, jadi pencarian rute selalu punya titik awal yang jelas.",
+      "This header shows your active location, so every route search starts from the right place.",
   },
   {
     target: "interactive-map",
-    eyebrow: "Langkah 2 dari 5",
+    eyebrow: "Step 2 of 5",
     title: "Interactive Map",
     message:
-      "Pantau area sekitar secara visual dan buka mode penuh saat butuh melihat posisi bus lebih detail.",
+      "Use the map to scan your area visually and open the full view when you need more bus position detail.",
   },
   {
     target: "favorite-routes",
-    eyebrow: "Langkah 3 dari 5",
-    title: "Rute Favorit",
+    eyebrow: "Step 3 of 5",
+    title: "Favorite Routes",
     message:
-      "Simpan perjalanan rutin seperti kos ke kampus agar bisa langsung mencari rute tanpa mengetik ulang.",
+      "Save routine trips so you can search them again without typing the same locations.",
   },
   {
     target: "nearby-buses",
-    eyebrow: "Langkah 4 dari 5",
-    title: "Bus Terdekat",
+    eyebrow: "Step 4 of 5",
+    title: "Nearby Buses",
     message:
-      "Lihat bus yang paling dekat, ETA, dan kondisi kepadatan sebelum kamu memutuskan naik.",
+      "Check the closest buses, ETA, and crowd status before deciding which one to take.",
   },
   {
     target: "commuter-talk",
-    eyebrow: "Langkah 5 dari 5",
+    eyebrow: "Step 5 of 5",
     title: "Commuter Talk",
     message:
-      "Forum singkat untuk membaca update sesama commuter tentang antrean, cuaca, dan kondisi rute.",
+      "Read quick updates from other commuters about queues, weather, and route conditions.",
   },
 ];
 
@@ -458,7 +458,7 @@ function DashboardPage() {
             data-walkthrough-target="favorite-routes"
           >
             <div className="section-heading">
-              <h2>Rute Favorit</h2>
+              <h2>Favorite Routes</h2>
               <button type="button">View All</button>
             </div>
             <div className="favorite-scroll">
@@ -500,7 +500,7 @@ function DashboardPage() {
             }`}
             data-walkthrough-target="nearby-buses"
           >
-            <h2>Bus Terdekat</h2>
+            <h2>Nearby Buses</h2>
             <div className="nearby-list">
               {nearbyBuses.map((bus) => (
                 <article
@@ -602,12 +602,12 @@ function DashboardPage() {
             <span>{activeStep.message}</span>
             <div className="walkthrough-actions">
               <button type="button" onClick={closeWalkthrough}>
-                Lewati
+                Skip
               </button>
               <button type="button" onClick={handleWalkthroughNext}>
                 {walkthroughStep === walkthroughSteps.length - 1
-                  ? "Selesai"
-                  : "Lanjut"}
+                  ? "Done"
+                  : "Next"}
               </button>
             </div>
           </div>

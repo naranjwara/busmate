@@ -18,7 +18,7 @@ const routeResults = [
     distance: "1.2 km",
     status: "Normal",
     statusVariant: "normal",
-    driver: "Pak Budi",
+    driver: "Mr. Budi",
     rating: "4.8",
     driverImage:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDer5xcBJ8tkBebcG99BUauYWh2KH3UgfutZz5Bn6S0UfqjOpSJC9z1wTF_4RvkIV5nF1GLBEp4WQdX43gouIRI3bUBaIyw_FUhXfHoxZRJLVZwSbcKCg8eZgSl7E717--arnQKcBHS9xRBHdqIk_6l-Dw_Iw1bSXh7N_aKNgVe9TaWT2H5cv4NoGUWSYAzq0xjsiEeQkgrOxXMvT7Cx3kjN7B8keSOUT3fv9qAVrLUszow3K8bNu1REhxnC1g9HS0yCOE9tqRljUI",
@@ -32,7 +32,7 @@ const routeResults = [
     distance: "3.4 km",
     status: "Full",
     statusVariant: "full",
-    driver: "Ibu Siti",
+    driver: "Ms. Siti",
     rating: "4.9",
     driverImage:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBp4uycg-tnF26t4DSpWEOu2o5v3yyV7Xd1QKHW7r8KHniqa_-4uqvWKbm00RgriTVyqB5iSFyHejKcOH69WUGb9qyxdp0-5Mth3JKRRRyAlKnsU3mzGfpuc1_jfPIHmJBW1cBHUg9ER2Pgwo4e9p8_wqMRJNDDCLZMcBk1X43JcODS4HtUwUINSypz472fZwVJzouGnN_M7CYeUAY-i9E-iS-g9si4MhUu2sv-uqMiPRGbV8SPOmGqfCQAchSLrLwTVQq71qQvY-c",
@@ -46,7 +46,7 @@ const routeResults = [
     distance: "5.1 km",
     status: "Normal",
     statusVariant: "normal",
-    driver: "Pak Agus",
+    driver: "Mr. Agus",
     rating: "4.7",
     driverImage:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAUFFBr-2l9l4F2P3Cmo93We2xW0X0NpBAK9QV_nkNXeOpR4DMadS-1cbodsNsQ8QjPzTDfJ-pNVHFYLPfvjSvOV67w4OTm496QBusFTqiZxk_xt98gYwP6o2vDCyZdQpKua7ddemlxWGoMO7_h466U2bOsmz4XNdEbZULI7mBvy3ASlmvCDVu1tU8qhLBulHL4tgtW6_m2I9dSssU2ZL32Cp9Axae8NcKLGNO1ccrPwdm4OIqO_pGACSHoW2W4P2R_vsdqO_T1AW0",
@@ -60,7 +60,7 @@ const routeResults = [
     distance: "6.0 km",
     status: "Normal",
     statusVariant: "normal",
-    driver: "Pak Rudi",
+    driver: "Mr. Rudi",
     rating: "4.6",
     driverImage:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDer5xcBJ8tkBebcG99BUauYWh2KH3UgfutZz5Bn6S0UfqjOpSJC9z1wTF_4RvkIV5nF1GLBEp4WQdX43gouIRI3bUBaIyw_FUhXfHoxZRJLVZwSbcKCg8eZgSl7E717--arnQKcBHS9xRBHdqIk_6l-Dw_Iw1bSXh7N_aKNgVe9TaWT2H5cv4NoGUWSYAzq0xjsiEeQkgrOxXMvT7Cx3kjN7B8keSOUT3fv9qAVrLUszow3K8bNu1REhxnC1g9HS0yCOE9tqRljUI",
@@ -74,7 +74,7 @@ const routeResults = [
     distance: "7.3 km",
     status: "Full",
     statusVariant: "full",
-    driver: "Ibu Maya",
+    driver: "Ms. Maya",
     rating: "4.8",
     driverImage:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBp4uycg-tnF26t4DSpWEOu2o5v3yyV7Xd1QKHW7r8KHniqa_-4uqvWKbm00RgriTVyqB5iSFyHejKcOH69WUGb9qyxdp0-5Mth3JKRRRyAlKnsU3mzGfpuc1_jfPIHmJBW1cBHUg9ER2Pgwo4e9p8_wqMRJNDDCLZMcBk1X43JcODS4HtUwUINSypz472fZwVJzouGnN_M7CYeUAY-i9E-iS-g9si4MhUu2sv-uqMiPRGbV8SPOmGqfCQAchSLrLwTVQq71qQvY-c",
@@ -282,7 +282,7 @@ export default function RoutesPage() {
         <article className="banner-card banner-subscribe">
           <div>
             <h3>Save with Subscriptions</h3>
-            <p>Get 20% off all rides to Kampus this month.</p>
+            <p>Get 20% off all rides to campus this month.</p>
           </div>
           <button type="button" className="banner-link">
             Learn more

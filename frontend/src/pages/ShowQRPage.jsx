@@ -66,7 +66,7 @@ export default function ShowQRPage() {
           >
             <Icon name="arrow_back" />
           </button>
-          <h1>Tiket Digital</h1>
+          <h1>Digital Ticket</h1>
         </div>
         <button
           className="show-qr-icon-button"
@@ -87,7 +87,7 @@ export default function ShowQRPage() {
 
           <div className="show-qr-status" aria-label="QR status">
             <span />
-            Siap di-scan
+            Ready to scan
           </div>
 
           <div className="show-qr-divider" aria-hidden="true">
@@ -96,7 +96,7 @@ export default function ShowQRPage() {
 
           <div className="show-qr-route-row">
             <div>
-              <span className="show-qr-label">Rute Bus</span>
+              <span className="show-qr-label">Bus Route</span>
               <strong>Cicaheum - Ledeng</strong>
             </div>
             <span className="show-qr-bus-pill">Bus 05</span>
@@ -104,19 +104,19 @@ export default function ShowQRPage() {
 
           <div className="show-qr-detail-grid">
             <div>
-              <span className="show-qr-label">ID Kendaraan</span>
+              <span className="show-qr-label">Vehicle ID</span>
               <strong>AH123bh</strong>
             </div>
             <div>
-              <span className="show-qr-label">Berangkat</span>
+              <span className="show-qr-label">Departure</span>
               <strong>14:30 PM</strong>
             </div>
           </div>
         </article>
 
         <section className="show-qr-info-grid" aria-label="Ticket information">
-          <InfoTile icon="event_seat" label="Tempat Duduk" value="12A" />
-          <InfoTile icon="payments" label="Tipe Tiket" value="Reguler" />
+          <InfoTile icon="event_seat" label="Seat" value="12A" />
+          <InfoTile icon="payments" label="Ticket Type" value="Regular" />
         </section>
 
         <section className="show-qr-actions" aria-label="Ticket actions">
@@ -125,11 +125,11 @@ export default function ShowQRPage() {
             onClick={() => window.location.assign("/bus-tracking/05")}
           >
             <Icon name="map" />
-            Buka Peta Live
+            Open Live Map
           </button>
           <button className="secondary" type="button">
             <Icon name="support" />
-            Butuh Bantuan?
+            Need Help?
           </button>
         </section>
       </section>

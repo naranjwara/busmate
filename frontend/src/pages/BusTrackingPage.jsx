@@ -44,7 +44,7 @@ const trackingBuses = {
     eta: "4 mins",
     distance: "1.4 km away",
     status: "Normal",
-    driver: "Pak Budi",
+    driver: "Mr. Budi",
     busId: "AH123bh",
   },
   12: {
@@ -53,7 +53,7 @@ const trackingBuses = {
     eta: "11 mins",
     distance: "3.2 km away",
     status: "Full",
-    driver: "Pak Asep",
+    driver: "Mr. Asep",
     busId: "BD120sk",
   },
   "08": {
@@ -62,7 +62,7 @@ const trackingBuses = {
     eta: "9 mins",
     distance: "2.1 km away",
     status: "Normal",
-    driver: "Pak Agus",
+    driver: "Mr. Agus",
     busId: "CH441lk",
   },
 };
@@ -275,7 +275,7 @@ export default function BusTrackingPage() {
             >
               {stop.id === userStopId ? (
                 <Tooltip direction="top" offset={[0, -18]} permanent>
-                  Halte tujuan
+                  Destination stop
                 </Tooltip>
               ) : null}
             </Marker>
