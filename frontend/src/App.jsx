@@ -5,6 +5,7 @@ import RoutesPage from "./pages/RoutesPage";
 import RoutesResult from "./pages/RoutesResult";
 import RouteDetailPage from "./pages/RouteDetailPage";
 import BusTrackingPage from "./pages/BusTrackingPage";
+import DriverDetailPage from "./pages/DriverDetailPage";
 import PaymentMethodPage from "./pages/PaymentMethodPage";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -68,6 +69,10 @@ function App() {
 
   if (currentPath === "/bus-tracking" || currentPath.startsWith("/bus-tracking/")) {
     return <BusTrackingPage />;
+  }
+
+  if (currentPath.startsWith("/drivers/")) {
+    return <DriverDetailPage />;
   }
 
   if (currentPath === "/payment-method") {

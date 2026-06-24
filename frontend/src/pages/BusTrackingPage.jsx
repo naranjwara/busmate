@@ -208,6 +208,9 @@ export default function BusTrackingPage() {
       setShowMessage(false);
     }, 3000);
   };
+  const handleDriverDetailClick = () => {
+    window.location.assign("/drivers/budi-santoso");
+  };
 
   return (
     <main className="bus-tracking-page">
@@ -395,7 +398,11 @@ export default function BusTrackingPage() {
             <div className="tracking-divider" />
 
             <div className="tracking-driver-row">
-              <div className="tracking-driver-card">
+              <button
+                className="tracking-driver-card"
+                type="button"
+                onClick={handleDriverDetailClick}
+              >
                 <div className="driver-avatar-wrap">
                   <img
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmFBWjVWzNygOsoLXujTc_rF0bAK6xBU_5Tt3qaUswJVRoXAbTRL_qf6lERAayxz-6ZmT8SKLvvxNcso2aJ-mpY5yIb2NRMvzFmDq7R4hxUNrwQedILxQt0ljhOZPurtSPcj-1VyFavl9H12rS4nhxWwJG2qq9XMod1fU7sBZASAYXkKeyzPlYdE3rIRvyqRvleVCJ6SU6Tj2IDgEkcY6BoffpfAzMQWHsh8dC7FHTVVapLVzy5ByjoI7yJkWDcdgUanWUWht98mE"
@@ -412,8 +419,12 @@ export default function BusTrackingPage() {
                     <span>Bus ID: {selectedBus.busId}</span>
                   </div>
                 </div>
-              </div>
-              <button className="driver-action-button" type="button">
+              </button>
+              <button
+                className="driver-action-button"
+                type="button"
+                onClick={handleDriverDetailClick}
+              >
                 <Icon filled name="star" />
                 View Reviews
               </button>
