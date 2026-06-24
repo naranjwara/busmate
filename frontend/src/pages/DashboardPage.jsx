@@ -309,6 +309,10 @@ function DashboardPage() {
     window.location.assign(`/bus-tracking/${busId}`);
   };
 
+  const handleInteractiveMapClick = () => {
+    window.location.assign("/bus-tracking/05?sheet=collapsed");
+  };
+
   const handleFavoriteRouteClick = (route) => {
     const searchParams = new URLSearchParams({
       from: route.from,
@@ -392,7 +396,17 @@ function DashboardPage() {
             aria-label="Live map preview"
             data-walkthrough-target="interactive-map"
           >
-            <div className="map-image-wrap">
+            <div
+              className="map-image-wrap"
+              onClick={handleInteractiveMapClick}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  handleInteractiveMapClick();
+                }
+              }}
+              role="button"
+              tabIndex={0}
+            >
               <MapContainer
                 center={mapCenter}
                 className="interactive-leaflet-map"
@@ -427,20 +441,10 @@ function DashboardPage() {
                 aria-label="Open map"
                 tabIndex={0}
                 role="button"
-                onClick={() =>
-                  showToast({
-                    title: "Coming Soon",
-                    message: "Interactive map will be available soon",
-                    type: "info",
-                  })
-                }
+                onClick={handleInteractiveMapClick}
                 onKeyDown={(event) => {
                   if (event.key === "Enter") {
-                    showToast({
-                      title: "Coming Soon",
-                      message: "Interactive map will be available soon",
-                      type: "info",
-                    });
+                    handleInteractiveMapClick();
                   }
                 }}
               >

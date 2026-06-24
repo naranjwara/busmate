@@ -145,7 +145,10 @@ function FitTrackingBounds({ path, points }) {
 }
 
 export default function BusTrackingPage() {
-  const [isSheetCollapsed, setIsSheetCollapsed] = useState(false);
+  const [isSheetCollapsed, setIsSheetCollapsed] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("sheet") === "collapsed";
+  });
   const [showMessage, setShowMessage] = useState(false);
   const selectedBusId = window.location.pathname.split("/").filter(Boolean)[1];
   const selectedBus = trackingBuses[selectedBusId] ?? trackingBuses["05"];
